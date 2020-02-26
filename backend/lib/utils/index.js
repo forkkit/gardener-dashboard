@@ -17,9 +17,14 @@
 
 'use strict'
 
+const path = require('path')
 const _ = require('lodash')
+const StackUtils = require('stack-utils')
 const config = require('../config')
 const assert = require('assert').strict
+
+const cwd = path.resolve(__dirname, '../..')
+const stackUtils = new StackUtils({ cwd })
 
 function decodeBase64 (value) {
   if (!value) {
@@ -53,10 +58,16 @@ function shootHasIssue (shoot) {
   return _.get(shoot, ['metadata', 'labels', 'shoot.garden.sapcloud.io/status'], 'healthy') !== 'healthy'
 }
 
+function getNameFromCallsite (startStackFunction) {
+  const callSite = stackUtils.at(startStackFunction)
+  return `${callSite.file}:${callSite.line}, Function=${callSite.function}`
+}
+
 module.exports = {
   decodeBase64,
   encodeBase64,
   getConfigValue,
   getSeedNameFromShoot,
-  shootHasIssue
+  shootHasIssue,
+  getNameFromCallsite
 }
