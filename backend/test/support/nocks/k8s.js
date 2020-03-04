@@ -1010,7 +1010,7 @@ const stub = {
       }
     }
     return nockWithAuthorization(bearer)
-      .get(`/apis/core.gardener.cloud/v1alpha1/projects/${name}`)
+      .get(`/apis/core.gardener.cloud/v1beta1/projects/${name}`)
       .reply(statusCode, () => result)
   },
   createProject ({ bearer, resourceVersion = 42 }) {
@@ -1042,7 +1042,7 @@ const stub = {
 
     return [
       nockWithAuthorization(bearer)
-        .get(`/apis/core.gardener.cloud/v1alpha1/projects/${name}`)
+        .get(`/apis/core.gardener.cloud/v1beta1/projects/${name}`)
         .reply(200, () => project)
         .patch(`/apis/core.gardener.cloud/v1beta1/projects/${name}`, body => {
           _.merge(newProject, body)
@@ -1057,7 +1057,7 @@ const stub = {
     const confirmationPath = ['metadata', 'annotations', 'confirmation.gardener.cloud/deletion']
     return [
       nockWithAuthorization(bearer)
-        .get(`/apis/core.gardener.cloud/v1alpha1/namespaces/${namespace}/shoots`)
+        .get(`/apis/core.gardener.cloud/v1beta1/namespaces/${namespace}/shoots`)
         .reply(200, {
           items: []
         })
@@ -1076,7 +1076,7 @@ const stub = {
     const project = readProject(namespace)
     if (project) {
       scope
-        .get(`/apis/core.gardener.cloud/v1alpha1/projects/${project.metadata.name}`)
+        .get(`/apis/core.gardener.cloud/v1beta1/projects/${project.metadata.name}`)
         .reply(200, () => project)
       getServiceAccountsForNamespace(scope, namespace)
     }
