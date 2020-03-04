@@ -292,6 +292,10 @@ Copyright JS Foundation and other contributors <https://js.foundation/>\
 Copyright (c) 2014 Justin Fagnani\
 [Apache License 2.0](https://github.com/justinfagnani/mixwith.js/blob/master/LICENSE)
 
+- [moment](https://github.com/moment/moment)\
+Copyright (c) JS Foundation and other contributors\
+[MIT License](https://github.com/moment/moment/blob/develop/LICENSE)
+
 - [morgan](https://github.com/expressjs/morgan)\
 Copyright (c) 2014 Jonathan Ong <me@jongleberry.com>\
 Copyright (c) 2014-2017 Douglas Christopher Wilson <doug@somethingdoug.com>\
@@ -328,6 +332,10 @@ Copyright (c) Isaac Z. Schlueter and Contributors\
 - [socket.io](https://github.com/socketio/socket.io)\
 Copyright (c) 2014-2017 Automattic <dev@cloudup.com>\
 [MIT License](https://github.com/socketio/socket.io/blob/master/LICENSE)
+
+- [stack-utils](https://github.com/tapjs/stack-utils)\
+Copyright (c) Isaac Z. Schlueter <i@izs.me>, James Talmage <james@talmage.io> (github.com/jamestalmage), and Contributors\
+[MIT License](https://github.com/tapjs/stack-utils/blob/master/license)
 
 - [uuid](https://github.com/kelektiv/node-uuid)\
 Copyright (c) 2010-2016 Robert Kieffer and other contributors\
