@@ -134,7 +134,6 @@ import CloudProfile from '@/components/CloudProfile'
 import SecretDialogWrapper from '@/dialogs/SecretDialogWrapper'
 import { required, requiredIf } from 'vuelidate/lib/validators'
 import { getValidationErrors, isOwnSecretBinding, selfTerminationDaysForSecret } from '@/utils'
-import { getCostObjectSettings, projectFromProjectList } from '@/utils/projects'
 import { includesIfAvailable, requiresCostObjectIfEnabled } from '@/utils/validators'
 import sortBy from 'lodash/sortBy'
 import head from 'lodash/head'
@@ -242,7 +241,9 @@ export default {
       'loadBalancerProviderNamesByCloudProfileNameAndRegion',
       'loadBalancerClassesByCloudProfileName',
       'loadBalancerClassNamesByCloudProfileName',
-      'floatingPoolNamesByCloudProfileNameAndRegion'
+      'floatingPoolNamesByCloudProfileNameAndRegion',
+      'projectFromProjectList',
+      'costObjectSettings'
     ]),
     validationErrors () {
       const validationErrors = {
@@ -250,7 +251,7 @@ export default {
           required: 'Secret is required',
           requiresCostObjectIfEnabled: () => {
             const projectName = get(this.secret, 'metadata.projectName')
-            const project = projectFromProjectList()
+            const project = this.projectFromProjectList
             const isSecretInProject = project.metadata.name === projectName
 
             return isSecretInProject ? `${this.costObjectTitle} is required. Go to the ADMINISTRATION page to edit the project and set the ${this.costObjectTitle}.` : `${this.costObjectTitle} is required and has to be set on the Project ${toUpper(projectName)}`
@@ -272,14 +273,8 @@ export default {
       }
       return validationErrors
     },
-    costObjectSettings () {
-      return getCostObjectSettings() || {}
-    },
-    costObjectSettingEnabled () {
-      return getCostObjectSettings() !== undefined
-    },
     costObjectTitle () {
-      return this.costObjectSettings.title
+      return get(this.costObjectSettings, 'title')
     },
     cloudProfiles () {
       return sortBy(this.cloudProfilesByCloudProviderKind(this.infrastructureKind), [(item) => item.metadata.name])
