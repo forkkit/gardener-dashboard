@@ -23,7 +23,7 @@ const StackUtils = require('stack-utils')
 const config = require('../config')
 const assert = require('assert').strict
 
-const cwd = path.resolve(__dirname, '../..')
+const cwd = path.resolve(__dirname, '..')
 const stackUtils = new StackUtils({ cwd })
 
 function decodeBase64 (value) {
